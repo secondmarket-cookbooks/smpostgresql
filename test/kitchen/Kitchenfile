@@ -1,0 +1,11 @@
+platform :centos do
+  version "6.3" do
+    box "CentOS-6.3-x86_64-netboot"
+    box_url "https://dl.dropbox.com/u/47541301/vagrantboxes/CentOS-6.3-x86_64-netboot.box"
+  end
+end
+
+cookbook "smpostgresql" do
+  configuration "server"
+  configuration "pgbadger"
+end

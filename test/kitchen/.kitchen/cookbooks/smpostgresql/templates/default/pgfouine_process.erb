@@ -1,0 +1,25 @@
+#!/bin/bash
+ 
+PGFOUINE="/usr/bin/pgfouine.php"
+DATESTAMP=$(date +%G%m%d)
+YEAR=$(date +%G)
+MONTH=$(date +%m)
+REPORTDIR="/var/www/htdocs/pgfouine/reports"
+PGSQLLOG="/var/log/pgsql"
+ 
+mkdir $REPORTDIR/$YEAR/$MONTH -p
+ 
+php $PGFOUINE -file $PGSQLLOG > $REPORTDIR/$YEAR/$MONTH/$DATESTAMP.htm
+
+DATE=`date +%m/%d/%Y`
+( cat <<EOCAT
+MIME-Version: 1.0
+From: postgresql@secondmarket.com
+To: <%= node[:postgresql][:pgfouine][:email] %>
+Subject: $DATE - PgFouine PostgreSQL Query Report
+Content-Type: multipart/mixed; boundary=NextPart_0123456789
+Content-Transfer-Encoding: 7bit
+--NextPart_0123456789
+Content-Type: text/html
+EOCAT
+cat $REPORTDIR/$YEAR/$MONTH/$DATESTAMP.htm ) | sendmail -t
