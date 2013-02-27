@@ -1,30 +1,36 @@
-= SPECIAL NOTE
-
-This cookbook is being released publicly as an illustration of how to create "application" cookbooks to overlay community cookbooks as "library cookbooks".
-
-Internal SecondMarket ACLs, feature flags, etc. have been elided to avoid revealing too much proprietary information.
-
-= DESCRIPTION:
+Description
+===========
 
 This is SecondMarket's PostgreSQL "library" cookbook, supporting PostgreSQL 9.0.
 
 Use this cookbook on SecondMarket "platform" servers only. For generic PostgreSQL servers, use the Opscode "postgresql" cookbook instead. The two are mutually exclusive.
 
-= WHAT'S A LIBRARY COOKBOOK AND AN APPLICATION COOKBOOK?
+Special Note
+============
+
+This cookbook is being released publicly as an illustration of how to create "application" cookbooks to overlay community cookbooks as "library cookbooks".
+
+Internal SecondMarket ACLs, feature flags, etc. have been removed for security reasons.
+
+What's a Library Cookbook and What's An Application Cookbook?
+=============================================================
 
 Read [Bryan Berry's blog post](http://devopsanywhere.blogspot.com/2012/11/how-to-write-reusable-chef-cookbooks.html) to get an overview.
 
 SecondMarket's platform uses PostgreSQL 9.x, but the underlying operating systems (CentOS 5, CentOS 6) generally ship with PostgreSQL 8.x. Additionally, on "platform" servers we need to set up ACLs, PostgreSQL settings for master/slave replication, etc. and other miscellaneous tuning flags.
 
-== Platform:
+Platform
+========
 
 Supported only on CentOS 5 and 6, which we use.
 
-= USAGE:
+Usage
+=====
 
 Including `smpostgresql::server` gets you most of what you need.
 
-= CREDITS:
+Credits
+=======
 
 * Author:: Julian Dunn (<jdunn@secondmarket.com>)
 * Author:: Chris Ferry (<cferry@secondmarket.com>)      
